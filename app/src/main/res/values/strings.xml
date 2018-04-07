@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">The Wild</string>
+    <string name="splash_logo_alt">The wild logo in splash screen</string>
 </resources>

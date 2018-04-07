@@ -1,6 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#6EB69B</color>
+    <color name="colorPrimaryDark">#166A52</color>
+    <color name="colorAccent">#7B4425</color>
+
+    <!--Shades of Green-->
+    <color name="darkestGreen">#166A52</color>
+    <color name="darkerGreen">#2D9277</color>
+    <color name="darkGreen">#4AA78C</color>
+    <color name="normalGreen">#6EB69B</color>
+    <color name="lightGreen">#88C5AE</color>
+    <color name="lighterGreen">#B1D8C5</color>
+    <color name="lightestGreen">#C5DEC9</color>
+
+
+    <!--Shades of Forest Green-->
+    <!--<color name="darkestGreen">#284022</color>-->
+    <!--<color name="darkerGreen">#4F7A37</color>-->
+    <!--<color name="darkGreen">#85A551</color>-->
+    <!--<color name="normalGreen">#A2B150</color>-->
+    <!--<color name="lightGreen">#B4BC87</color>-->
+    <!--<color name="lighterGreen">#A3B0B0</color>-->
+    <!--<color name="lightestGreen">#C8E6C9</color>-->
+
 </resources>
