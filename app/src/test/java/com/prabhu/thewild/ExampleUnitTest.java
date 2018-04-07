@@ -1,4 +1,4 @@
-package com.prabhu.thezoo;
+package com.prabhu.thewild;
 
 import org.junit.Test;
 
