@@ -1,20 +1,31 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.AppCompat.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
 
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:elevation">@dimen/shadow_elevation</item>
+
+
         <item name="android:fontFamily">@font/interui</item>
         <item name="fontFamily">@font/interui</item> <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
+
+        <item name="android:windowEnterTransition">@android:transition/slide_right</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
+
     </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/green_blur</item>
         <item name="android:fontFamily">@font/buffaloscript</item>
         <item name="fontFamily">@font/buffaloscript</item> <!-- target android sdk versions < 26 and > 14 if theme other than AppCompat -->
+
+        <item name="android:windowEnterTransition">@android:transition/fade</item>
+        <item name="android:windowExitTransition">@android:transition/slide_left</item>
     </style>
 
 </resources>

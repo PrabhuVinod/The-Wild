@@ -1,0 +1,332 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".MainActivity">
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/mammals_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="24dp"
+            android:scaleType="center"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/birds_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/mammals"
+            app:zoomEnabled="false" />
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/reptiles_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/amphibians_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/birds_imageView"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/reptiles"
+            app:zoomEnabled="false" />
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/amphibians_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/invertebrates_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/reptiles_imageView"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/amphibians"
+            app:zoomEnabled="false" />
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/invertebrates_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/fish_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/amphibians_imageView"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/invertebrates"
+            app:zoomEnabled="false" />
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/birds_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toTopOf="@+id/reptiles_imageView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mammals_imageView"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/birds"
+            app:zoomEnabled="false" />
+
+        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+            android:id="@+id/fish_imageView"
+            android:layout_width="0dp"
+            android:layout_height="250dp"
+            android:layout_marginBottom="24dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="openTypeDetails"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/invertebrates_imageView"
+            app:quickScaleEnabled="true"
+            app:src="@drawable/fish"
+            app:zoomEnabled="false" />
+
+        <android.support.constraint.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="34dp" />
+
+        <TextView
+            android:id="@+id/mammals_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Mammals"
+            android:fontFamily="@font/interui_bold"
+            android:text="Mammals"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/mammals_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Mammals" />
+
+        <TextView
+            android:id="@+id/birds_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Birds"
+            android:fontFamily="@font/interui_bold"
+            android:text="Birds"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/birds_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Birds" />
+
+        <TextView
+            android:id="@+id/mammals_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:text="Mammals are among the most adaptable animals on the planet."
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/mammals_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/mammals_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Mammals are among the most adaptable animals on the planet." />
+
+        <TextView
+            android:id="@+id/birds_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:contentDescription="Birds are vertebrate animals adapted for flight. "
+            android:text="Birds are vertebrate animals adapted for flight. "
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/birds_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/birds_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Birds are vertebrate animals adapted for flight. " />
+
+        <TextView
+            android:id="@+id/reptiles_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:contentDescription="Reptiles are air-breathing vertebrates covered in special skin made up of scales or bony plates."
+            android:text="Reptiles are air-breathing vertebrates covered in special skin made up of scales or bony plates."
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/reptiles_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/reptiles_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Reptiles are air-breathing vertebrates covered in special skin made up of scales, bony plates, or a combination of both." />
+
+        <TextView
+            android:id="@+id/reptiles_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Reptiles"
+            android:fontFamily="@font/interui_bold"
+            android:text="Reptiles"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/reptiles_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Reptiles" />
+
+        <TextView
+            android:id="@+id/amphibians_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:contentDescription="Amphibians are small vertebrates that need water, or a moist environment, to survive."
+            android:text="Amphibians are small vertebrates that need water, or a moist environment, to survive."
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/amphibians_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/amphibians_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Amphibians are small vertebrates that need water, or a moist environment, to survive." />
+
+        <TextView
+            android:id="@+id/amphibians_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Amphibians"
+            android:fontFamily="@font/interui_bold"
+            android:text="Amphibians"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/amphibians_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Amphibians" />
+
+        <TextView
+            android:id="@+id/invertebrates_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:contentDescription="Invertebrates are animals without a backbone or bony skeleton."
+            android:text="Invertebrates are animals without a backbone or bony skeleton."
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/invertebrates_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/invertebrates_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Invertebrates are animals without a backbone or bony skeleton." />
+
+        <TextView
+            android:id="@+id/invertebrates_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="invertebrates"
+            android:fontFamily="@font/interui_bold"
+            android:text="Invertebrates"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/invertebrates_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Invertebrates" />
+
+        <TextView
+            android:id="@+id/fish_intro_tv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginStart="8dp"
+            android:background="@color/semi_black"
+            android:contentDescription="All fish share two traits: they live in water and they have a backbone—they are vertebrates."
+            android:text="All fish share two traits: they live in water and they have a backbone—they are vertebrates."
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@+id/fish_imageView"
+            app:layout_constraintEnd_toEndOf="@+id/fish_imageView"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="All fish share two traits: they live in water and they have a backbone—they are vertebrates." />
+
+        <TextView
+            android:id="@+id/fish_title_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp"
+            android:contentDescription="Fish"
+            android:fontFamily="@font/interui_bold"
+            android:text="Fish"
+            android:textAppearance="@android:style/TextAppearance.Material.Headline"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/fish_intro_tv"
+            app:layout_constraintStart_toStartOf="@+id/guideline"
+            tools:text="Fish" />
+
+    </android.support.constraint.ConstraintLayout>
+
+</ScrollView>
+
+
