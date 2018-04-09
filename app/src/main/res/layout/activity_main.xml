@@ -11,27 +11,33 @@
         android:layout_height="wrap_content"
         tools:context=".MainActivity">
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <include
+            android:id="@+id/included_searchbar"
+            layout="@layout/searchbar"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
             android:id="@+id/mammals_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
             android:layout_marginEnd="16dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="24dp"
-            android:scaleType="center"
+            android:layout_marginTop="16dp"
             android:clickable="true"
             android:focusable="true"
             android:onClick="openTypeDetails"
+            android:scaleType="center"
             app:layout_constraintBottom_toTopOf="@+id/birds_imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/mammals"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/included_searchbar" />
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <ImageView
             android:id="@+id/reptiles_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -45,12 +51,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/birds_imageView"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/reptiles"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/birds_imageView"/>
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <ImageView
             android:id="@+id/amphibians_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -64,12 +67,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/reptiles_imageView"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/amphibians"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/reptiles_imageView"/>
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <ImageView
             android:id="@+id/invertebrates_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -83,12 +83,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/amphibians_imageView"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/invertebrates"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/amphibians_imageView"/>
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <ImageView
             android:id="@+id/birds_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -102,12 +99,9 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/mammals_imageView"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/birds"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/mammals_imageView" />
 
-        <com.davemorrissey.labs.subscaleview.SubsamplingScaleImageView
+        <ImageView
             android:id="@+id/fish_imageView"
             android:layout_width="0dp"
             android:layout_height="250dp"
@@ -122,10 +116,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/invertebrates_imageView"
-            app:quickScaleEnabled="true"
-            app:src="@drawable/fish"
-            app:zoomEnabled="false" />
+            app:layout_constraintTop_toBottomOf="@+id/invertebrates_imageView" />
 
         <android.support.constraint.Guideline
             android:id="@+id/guideline"

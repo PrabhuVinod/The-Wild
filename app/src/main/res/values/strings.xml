@@ -1,4 +1,9 @@
 <resources>
     <string name="app_name">The Wild</string>
     <string name="splash_logo_alt">The wild logo in splash screen</string>
+
+    <string name="path_search">
+       M141,17 A9,9 0 1,1 142,16 L149,23
+    </string>
+
 </resources>

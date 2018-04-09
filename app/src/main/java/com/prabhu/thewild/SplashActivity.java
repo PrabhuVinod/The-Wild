@@ -30,15 +30,17 @@ public class SplashActivity extends AppCompatActivity {
         natGeo.loadAllAnimals(mActivity, new NatGeoCallback() {
             @Override
             public void onSuccess(String resopnseJson) {
-                Log.e("ALL ANIMALS ","loaded");
                 natGeo.responseToJSON(resopnseJson, "animals");
 
                 progressBar.setVisibility(View.GONE);
 
                 Intent intent = new Intent(mActivity, MainActivity.class);
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity).toBundle());
-                finish();
+                if(mActivity != null) {
+                    //startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity).toBundle());  // animation causing crash
+                    startActivity(intent);
+                    finish();
+                }
 
             }
         });

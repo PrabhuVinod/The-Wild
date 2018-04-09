@@ -66,9 +66,9 @@ public enum NatGeo {
                     animals = gson.fromJson(animalsArr.toString(), NatGeoAnimal[].class);
 
                     Log.d("animals size",String.valueOf(animals.length));
-                    for(NatGeoAnimal animal: animals){
-                        Log.e("ANIMAL",animal.getTitle());
-                    }
+//                    for(NatGeoAnimal animal: animals){
+//                        Log.e("ANIMAL",animal.getTitle());
+//                    }
                 }
                 setAllAnimals(animals);
 
