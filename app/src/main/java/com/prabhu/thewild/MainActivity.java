@@ -1,37 +1,45 @@
 package com.prabhu.thewild;
 
+import android.animation.Animator;
+import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimatedVectorDrawable;
+import android.opengl.Visibility;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.animation.AnimationUtils;
 import android.view.animation.Interpolator;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.prabhu.thewild.utils.NatGeo;
+
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ImageView iv;
-    private TextView text;
-    private View included_searchbar;
-
-    private AnimatedVectorDrawable searchToBar;
-    private AnimatedVectorDrawable barToSearch;
-    private float offset;
-    private Interpolator interp;
-    private int duration;
-    private boolean expanded = false;
-
     Activity mActivity;
+    Toolbar toolbar;
+
+    String[] allAnimalNames;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,26 +50,69 @@ public class MainActivity extends AppCompatActivity {
 
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        included_searchbar = (View)findViewById(R.id.included_searchbar);
-        iv = (ImageView) included_searchbar.findViewById(R.id.search);
-        text = (TextView) included_searchbar.findViewById(R.id.text);
-        searchToBar = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.anim_search_to_bar);
-        barToSearch = (AnimatedVectorDrawable) getResources().getDrawable(R.drawable.anim_bar_to_search);
-        interp = AnimationUtils.loadInterpolator(this, android.R.interpolator.linear_out_slow_in);
-        duration = getResources().getInteger(R.integer.duration_bar);
-        // iv is sized to hold the search+bar so when only showing the search icon, translate the
-        // whole view left by half the difference to keep it centered
-        offset = -71f * (int) getResources().getDisplayMetrics().scaledDensity;
-        iv.setTranslationX(offset);
-        text.setAlpha(0f);
-        text.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar.setTitle("");
+
+        final TextView toolbar_title_tv = (TextView)findViewById(R.id.toolbar_title);
+        ImageButton search_btn = (ImageButton) findViewById(R.id.search_btn);
+
+
+        NatGeo natGeo = NatGeo.INSTANCE;
+        allAnimalNames = natGeo.getAllAnimalNames().toArray(new String[0]);
+
+
+        View v= findViewById(R.id.search_bar_include);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(mActivity, R.layout.simple_dropdown_item, allAnimalNames);
+        final AutoCompleteTextView search_auto_tv = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
+        search_auto_tv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-                if (!hasFocus) {
-                    // code to execute when EditText loses focus
-                    expanded =true;
-                    animate(iv);
-                    Toast.makeText(mActivity, "unfocused", Toast.LENGTH_SHORT).show();
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                String selected_animal = (String) adapterView.getItemAtPosition(position);
+                Toast.makeText(mActivity, selected_animal, Toast.LENGTH_SHORT).show();
+
+                search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                    @Override
+                    public void onAnimationEnd(Animator animation) {
+                        super.onAnimationEnd(animation);
+                        hideSoftKeyboard(search_auto_tv);
+                        search_auto_tv.setVisibility(View.INVISIBLE);
+                    }
+                });
+                toolbar_title_tv.animate().alpha(1.0f).setDuration(1000);
+
+            }
+        });
+
+        search_auto_tv.setAdapter(adapter);
+        search_auto_tv.setVisibility(View.INVISIBLE);
+
+
+        search_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(final View view) {
+
+                if(search_auto_tv.getVisibility() == View.VISIBLE){
+                    search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            hideSoftKeyboard(view);
+                            search_auto_tv.setVisibility(View.INVISIBLE);
+                        }
+                    });
+                    toolbar_title_tv.animate().alpha(1.0f).setDuration(1000);
+                }
+                else {
+                    toolbar_title_tv.animate().alpha(0.0f).setDuration(1000);
+                    search_auto_tv.animate().alpha(1.0f).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+                        @Override
+                        public void onAnimationEnd(Animator animation) {
+                            super.onAnimationEnd(animation);
+                            search_auto_tv.setVisibility(View.VISIBLE);
+                        }
+                    });
+
                 }
             }
         });
@@ -101,26 +152,13 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void animate(View view) {
-        Toast.makeText(mActivity, getResources().getResourceEntryName(view.getId()), Toast.LENGTH_SHORT).show();
-        if (!expanded) {
-            iv.setImageDrawable(searchToBar);
-            searchToBar.start();
-            iv.animate().translationX(0f).setDuration(duration).setInterpolator(interp);
-            text.animate().alpha(1f).setStartDelay(duration - 100).setDuration(100).setInterpolator(interp);
-            text.setVisibility(View.VISIBLE);
-            expanded = !expanded;
-        } else {
-            if(view.getId() != text.getId()){
-                iv.setImageDrawable(barToSearch);
-                barToSearch.start();
-                iv.animate().translationX(offset).setDuration(duration).setInterpolator(interp);
-                text.setAlpha(0f);
-                text.setVisibility(View.INVISIBLE);
-                expanded = !expanded;
+    public static void hideSoftKeyboard(View view) {
+        if (view != null) {
+            InputMethodManager inputManager = (InputMethodManager) view.getContext().getSystemService(Context.INPUT_METHOD_SERVICE);
+            if (inputManager != null) {
+                inputManager.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }
         }
     }
-
 
 }

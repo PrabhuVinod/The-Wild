@@ -24,6 +24,7 @@ public enum NatGeo {
 
     RequestQueue requestQueue;
     NatGeoAnimal[] animals;
+    ArrayList<String> allAnimalNames = new ArrayList<String>();
 
 
     public void loadAllAnimals(Activity mActivity, final NatGeoCallback natGeoCallback){
@@ -49,6 +50,11 @@ public enum NatGeo {
     public NatGeoAnimal[] getAllAnimals() {
         return  animals;
     }
+
+    public ArrayList<String> getAllAnimalNames() {
+        return  allAnimalNames;
+    }
+
     private void setAllAnimals(NatGeoAnimal[] animals){
         this.animals = animals;
     }
@@ -66,9 +72,12 @@ public enum NatGeo {
                     animals = gson.fromJson(animalsArr.toString(), NatGeoAnimal[].class);
 
                     Log.d("animals size",String.valueOf(animals.length));
-//                    for(NatGeoAnimal animal: animals){
-//                        Log.e("ANIMAL",animal.getTitle());
-//                    }
+                    int i = 0;
+                    for(NatGeoAnimal animal: animals){
+                        Log.e("ANIMAL",animal.getTitle());
+                        allAnimalNames.add(animal.getTitle());
+                        i++;
+                    }
                 }
                 setAllAnimals(animals);
 
