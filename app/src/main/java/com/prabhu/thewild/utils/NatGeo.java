@@ -74,7 +74,7 @@ public enum NatGeo {
                     Log.d("animals size",String.valueOf(animals.length));
                     int i = 0;
                     for(NatGeoAnimal animal: animals){
-                        Log.e("ANIMAL",animal.getTitle());
+                        //Log.e("ANIMAL",animal.getTitle());
                         allAnimalNames.add(animal.getTitle());
                         i++;
                     }
@@ -88,4 +88,23 @@ public enum NatGeo {
         }
 
     }
+
+    public ArrayList<NatGeoAnimal> filterAnimalsByType(String type){
+        ArrayList<NatGeoAnimal> filteredAnimals = new ArrayList<>();
+        for(NatGeoAnimal animal:animals){
+            Log.e(animal.getTitle(),animal.getType());
+            if(animal.getType().equals(type))
+                filteredAnimals.add(animal);
+        }
+        return filteredAnimals;
+    }
+
+    public NatGeoAnimal getAnimalByName(String name){
+        for(NatGeoAnimal animal:animals){
+            if(animal.getTitle().equals(name))
+                return animal;
+        }
+        return null;
+    }
+
 }

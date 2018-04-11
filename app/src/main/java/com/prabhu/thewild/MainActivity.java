@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -133,16 +134,22 @@ public class MainActivity extends AppCompatActivity {
 
         switch (view.getId()){
             case R.id.mammals_imageView: Toast.makeText(mActivity, "Mammals clicked" , Toast.LENGTH_SHORT).show();
+            openTypeResults("Mammals");
             break;
             case R.id.birds_imageView: Toast.makeText(mActivity, "Birds clicked" , Toast.LENGTH_SHORT).show();
+                openTypeResults("Birds");
                 break;
             case R.id.reptiles_imageView: Toast.makeText(mActivity, "reptiles clicked" , Toast.LENGTH_SHORT).show();
+                openTypeResults("Reptiles");
                 break;
             case R.id.amphibians_imageView: Toast.makeText(mActivity, "amphibians clicked" , Toast.LENGTH_SHORT).show();
+                openTypeResults("Amphibians");
                 break;
             case R.id.invertebrates_imageView: Toast.makeText(mActivity, "invertebrates clicked" , Toast.LENGTH_SHORT).show();
+                openTypeResults("Invertebrates");
                 break;
             case R.id.fish_imageView: Toast.makeText(mActivity, "fish clicked" , Toast.LENGTH_SHORT).show();
+                openTypeResults("Fish");
                 break;
             default : Toast.makeText(mActivity, "default executed" , Toast.LENGTH_SHORT).show();
                 break;
@@ -150,7 +157,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public void openTypeResults(String animalType){
+        Intent intent = new Intent(mActivity, ResultsActivity.class);
+        intent.putExtra("animalType",animalType);
+        startActivity(intent);
+        finish();
 
+    }
 
     public static void hideSoftKeyboard(View view) {
         if (view != null) {

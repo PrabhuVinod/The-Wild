@@ -61,6 +61,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getTitle() {
+        if (title == null)
+            return "Unknown";
         return title;
     }
 
@@ -69,6 +71,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getScientificName() {
+        if (scientificName == null)
+            return "Unknown";
         return scientificName;
     }
 
@@ -77,6 +81,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getUrl() {
+        if (url == null)
+            return "Unknown";
         return url;
     }
 
@@ -85,6 +91,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getType() {
+        if (type == null)
+            return "Unknown";
         return type;
     }
 
@@ -93,6 +101,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getDiet() {
+        if (diet == null)
+            return "Unknown";
         return diet;
     }
 
@@ -101,6 +111,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getGroupName() {
+        if (groupName == null)
+            return "Unknown";
         return groupName;
     }
 
@@ -109,6 +121,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getAverageLifeSpanInCaptivity() {
+        if (averageLifeSpanInCaptivity == null)
+            return "Unknown";
         return averageLifeSpanInCaptivity;
     }
 
@@ -117,6 +131,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getSize() {
+        if (size == null)
+            return "Unknown";
         return size;
     }
 
@@ -125,6 +141,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getWeight() {
+        if (weight == null)
+            return "Unknown";
         return weight;
     }
 
@@ -133,6 +151,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getPopulationTrend() {
+        if (populationTrend == null)
+            return "Unknown";
         return populationTrend;
     }
 
@@ -141,6 +161,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getStatus() {
+        if (status == null)
+            return "Unknown";
         return status;
     }
 
@@ -149,6 +171,8 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getStatusCode() {
+        if (statusCode == null)
+            return "Unknown";
         return statusCode;
     }
 

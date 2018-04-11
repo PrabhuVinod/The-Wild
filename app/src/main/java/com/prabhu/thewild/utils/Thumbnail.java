@@ -46,6 +46,8 @@ public class Thumbnail implements Serializable
     }
 
     public String getUrl() {
+        if (url == null)
+            return "Unknown";
         return url;
     }
 
@@ -54,6 +56,8 @@ public class Thumbnail implements Serializable
     }
 
     public Double getAspectRatio() {
+        if (aspectRatio == null)
+            return 1.0;
         return aspectRatio;
     }
 
@@ -62,6 +66,8 @@ public class Thumbnail implements Serializable
     }
 
     public Integer getHeight() {
+        if (height == null)
+            return 100;
         return height;
     }
 
@@ -70,6 +76,8 @@ public class Thumbnail implements Serializable
     }
 
     public Integer getWidth() {
+        if (width == null)
+            return 100;
         return width;
     }
 
@@ -78,6 +86,8 @@ public class Thumbnail implements Serializable
     }
 
     public String getMimeType() {
+        if (mimeType == null)
+            return "Unknown";
         return mimeType;
     }
 
@@ -86,6 +96,8 @@ public class Thumbnail implements Serializable
     }
 
     public Boolean getInternal() {
+        if (internal == null)
+            return false;
         return internal;
     }
 
@@ -94,6 +106,8 @@ public class Thumbnail implements Serializable
     }
 
     public String getAltText() {
+        if (altText == null)
+            return "Unknown";
         return altText;
     }
 
@@ -102,6 +116,8 @@ public class Thumbnail implements Serializable
     }
 
     public String getGuid() {
+        if (guid == null)
+            return "Unknown";
         return guid;
     }
 
