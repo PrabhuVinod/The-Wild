@@ -1,8 +1,11 @@
 package com.prabhu.thewild.utils;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 
-public class NatGeoAnimal implements Serializable
+public class NatGeoAnimal implements Serializable ,Parcelable
 {
 
     private String title;
@@ -61,7 +64,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getTitle() {
-        if (title == null)
+        if (title == null || title.trim().equals(""))
             return "Unknown";
         return title;
     }
@@ -71,7 +74,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getScientificName() {
-        if (scientificName == null)
+        if (scientificName == null || scientificName.trim().equals(""))
             return "Unknown";
         return scientificName;
     }
@@ -81,7 +84,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getUrl() {
-        if (url == null)
+        if (url == null || url.trim().equals(""))
             return "Unknown";
         return url;
     }
@@ -91,7 +94,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getType() {
-        if (type == null)
+        if (type == null || type.trim().equals(""))
             return "Unknown";
         return type;
     }
@@ -101,7 +104,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getDiet() {
-        if (diet == null)
+        if (diet == null || diet.trim().equals(""))
             return "Unknown";
         return diet;
     }
@@ -111,7 +114,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getGroupName() {
-        if (groupName == null)
+        if (groupName == null || groupName.trim().equals(""))
             return "Unknown";
         return groupName;
     }
@@ -121,7 +124,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getAverageLifeSpanInCaptivity() {
-        if (averageLifeSpanInCaptivity == null)
+        if (averageLifeSpanInCaptivity == null || averageLifeSpanInCaptivity.trim().equals(""))
             return "Unknown";
         return averageLifeSpanInCaptivity;
     }
@@ -131,7 +134,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getSize() {
-        if (size == null)
+        if (size == null || size.trim().equals(""))
             return "Unknown";
         return size;
     }
@@ -141,7 +144,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getWeight() {
-        if (weight == null)
+        if (weight == null || weight.trim().equals(""))
             return "Unknown";
         return weight;
     }
@@ -151,7 +154,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getPopulationTrend() {
-        if (populationTrend == null)
+        if (populationTrend == null || populationTrend.trim().equals(""))
             return "Unknown";
         return populationTrend;
     }
@@ -161,7 +164,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getStatus() {
-        if (status == null)
+        if (status == null || status.trim().equals(""))
             return "Unknown";
         return status;
     }
@@ -171,7 +174,7 @@ public class NatGeoAnimal implements Serializable
     }
 
     public String getStatusCode() {
-        if (statusCode == null)
+        if (statusCode == null || statusCode.trim().equals(""))
             return "Unknown";
         return statusCode;
     }
@@ -188,4 +191,13 @@ public class NatGeoAnimal implements Serializable
         this.thumbnail = thumbnail;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+
+    }
 }

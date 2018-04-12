@@ -4,54 +4,76 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/semi_black"
-    tools:context=".ResultsActivity">
+    tools:context=".ResultsActivity"
+    tools:layout_editor_absoluteY="25dp">
 
     <android.support.v4.view.ViewPager
         android:id="@+id/viewpager"
-        android:layout_width="344dp"
-        android:layout_height="330dp"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:layout_gravity="center"
         android:layout_marginBottom="16dp"
-        android:clipToPadding="false"
-        android:paddingLeft="16dp"
-        android:paddingRight="16dp"
+        android:layout_marginTop="16dp"
         android:animateLayoutChanges="true"
+        android:clipToPadding="false"
         android:overScrollMode="never"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:padding="24dp"
+        android:paddingEnd="@dimen/card_padding"
+        android:paddingLeft="@dimen/card_padding"
+        android:paddingRight="@dimen/card_padding"
+        android:paddingStart="@dimen/card_padding"
+        app:layout_constraintBottom_toTopOf="@+id/match_count_tv"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/match_count_tv" />
+        app:layout_constraintTop_toBottomOf="@+id/search_msg_tv" />
 
 
     <TextView
         android:id="@+id/search_msg_tv"
-        android:layout_width="344dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:text="Mammals results"
+        android:layout_marginTop="24dp"
         android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/match_count_tv"
+        android:textAppearance="@android:style/TextAppearance.Material.Headline"
+        android:textSize="30sp"
+        app:layout_constraintBottom_toTopOf="@+id/viewpager"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"
         tools:text="Mammals results" />
 
     <TextView
         android:id="@+id/match_count_tv"
-        android:layout_width="344dp"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="24dp"
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"
-        android:text="25/120"
+        android:layout_marginTop="16dp"
         android:textAlignment="center"
-        android:textAppearance="@android:style/TextAppearance.Material.Headline"
-        app:layout_constraintBottom_toTopOf="@+id/viewpager"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/search_msg_tv"
+        app:layout_constraintTop_toBottomOf="@+id/viewpager"
         tools:text="25/120" />
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:background="@color/colorPrimary"
+        android:minHeight="?android:attr/actionBarSize"
+        android:theme="?android:attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <include android:id="@+id/search_bar_include" layout="@layout/search_bar"/>
+
+    </android.support.v7.widget.Toolbar>
+
 
 </android.support.constraint.ConstraintLayout>

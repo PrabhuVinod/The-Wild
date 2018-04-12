@@ -42,6 +42,7 @@ public enum NatGeo {
             public void onErrorResponse(VolleyError error) {
                 //TODO: Open error screen
                 error.printStackTrace();
+                natGeoCallback.onError(error.getMessage());
             }
         });
         requestQueue.add(stringRequest);

@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.prabhu.thewild.utils.NatGeo;
 import com.prabhu.thewild.utils.NatGeoCallback;
@@ -43,7 +44,14 @@ public class SplashActivity extends AppCompatActivity {
                 }
 
             }
+
+            @Override
+            public void onError(String error) {
+                Toast.makeText(mActivity, "ERROR:"+error, Toast.LENGTH_SHORT).show();
+            }
+
         });
 
     }
+
 }

@@ -10,6 +10,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.AnimatedVectorDrawable;
 import android.opengl.Visibility;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -80,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                         search_auto_tv.setVisibility(View.INVISIBLE);
                     }
                 });
-                toolbar_title_tv.animate().alpha(1.0f).setDuration(1000);
+                toolbar_title_tv.animate().alpha(1.0f).setDuration(500);
 
             }
         });
@@ -102,11 +103,11 @@ public class MainActivity extends AppCompatActivity {
                             search_auto_tv.setVisibility(View.INVISIBLE);
                         }
                     });
-                    toolbar_title_tv.animate().alpha(1.0f).setDuration(1000);
+                    toolbar_title_tv.animate().alpha(1.0f).setDuration(500);
                 }
                 else {
-                    toolbar_title_tv.animate().alpha(0.0f).setDuration(1000);
-                    search_auto_tv.animate().alpha(1.0f).setDuration(1000).setListener(new AnimatorListenerAdapter() {
+                    toolbar_title_tv.animate().alpha(0.0f).setDuration(500);
+                    search_auto_tv.animate().alpha(1.0f).setDuration(500).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
                             super.onAnimationEnd(animation);
@@ -160,8 +161,9 @@ public class MainActivity extends AppCompatActivity {
     public void openTypeResults(String animalType){
         Intent intent = new Intent(mActivity, ResultsActivity.class);
         intent.putExtra("animalType",animalType);
+        //startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity).toBundle());
         startActivity(intent);
-        finish();
+        //finish();
 
     }
 
