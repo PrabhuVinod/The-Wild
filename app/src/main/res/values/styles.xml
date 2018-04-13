@@ -17,6 +17,9 @@
         <item name="android:windowEnterTransition">@android:transition/slide_right</item>
         <item name="android:windowExitTransition">@android:transition/slide_left</item>
 
+        <item name="toolbarStyle">@style/myToolbarStyle</item>
+        <item name="toolbarNavigationButtonStyle">@style/myToolbarNavigationButtonStyle</item>
+
     </style>
 
     <style name="SplashStyle" parent="Theme.AppCompat.NoActionBar">
@@ -27,5 +30,17 @@
         <!--<item name="android:windowEnterTransition">@android:transition/fade</item>-->
         <item name="android:windowExitTransition">@android:transition/slide_left</item>
     </style>
+
+
+    <style name="myToolbarNavigationButtonStyle" parent="@style/Widget.AppCompat.Toolbar.Button.Navigation">
+        <item name="android:minWidth">0dp</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <style name="myToolbarStyle" parent="@style/Widget.AppCompat.Toolbar">
+        <item name="android:paddingRight">10dp</item>
+    </style>
+
 
 </resources>

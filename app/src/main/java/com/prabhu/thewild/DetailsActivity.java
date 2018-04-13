@@ -3,20 +3,11 @@ package com.prabhu.thewild;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
-import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -27,24 +18,19 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.prabhu.thewild.utils.NatGeo;
-import com.prabhu.thewild.utils.NatGeoAnimal;
-
-import java.util.ArrayList;
 
 import static com.prabhu.thewild.MainActivity.hideSoftKeyboard;
 
-public class ResultsActivity extends AppCompatActivity {
+public class DetailsActivity extends AppCompatActivity {
 
     Activity mActivity;
     Toolbar toolbar;
     ViewPager mPager;
     PagerAdapter mPagerAdapter;
-    private ArrayList<NatGeoAnimal> animals;
-    TextView match_count_tv, search_msg_tv;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_results);
+        setContentView(R.layout.activity_details);
 
         mActivity = this;
         NatGeo natGeo = NatGeo.INSTANCE;
@@ -53,18 +39,8 @@ public class ResultsActivity extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolbar);
         toolbar.setTitle("");
 
-        toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
-
-        setSupportActionBar(toolbar);
         if (getSupportActionBar() != null)
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                onBackPressed();
-            }
-        });
 
         final TextView toolbar_title_tv = (TextView)findViewById(R.id.toolbar_title);
         ImageButton search_btn = (ImageButton) findViewById(R.id.search_btn);
@@ -124,84 +100,5 @@ public class ResultsActivity extends AppCompatActivity {
             }
         });
 
-        match_count_tv = findViewById(R.id.match_count_tv);
-        search_msg_tv = findViewById(R.id.search_msg_tv);
-
-        String animalType;
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                animalType= null;
-            } else {
-                animalType= extras.getString("animalType");
-            }
-        } else {
-            animalType= (String) savedInstanceState.getSerializable("animalType");
-        }
-
-        animals = natGeo.filterAnimalsByType(animalType);
-
-
-        search_msg_tv.setText(animalType);
-        match_count_tv.setText("1/"+animals.size());
-
-
-        mPager = (ViewPager) findViewById(R.id.viewpager);
-        mPager.setPageMargin(convertDip2Pixels(mActivity,16));
-        mPager.setPageTransformer(false, new ViewPager.PageTransformer() {
-            @Override
-            public void transformPage(View page, float position) {
-                final float normalizedposition = Math.abs(Math.abs(position) - 1);
-                page.setScaleX(normalizedposition / 2 + 0.75f);
-                page.setScaleY(normalizedposition / 2 + 0.75f);
-            }
-        });
-
-        mPagerAdapter = new ScreenSlidePagerAdapter(getSupportFragmentManager());
-        mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("onPageScrolled",":"+position);
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                match_count_tv.setText((position+1)+"/"+animals.size());
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-                Log.e("PageScrollStateChanged",":"+state);
-            }
-        });
-        mPager.setAdapter(mPagerAdapter);
-    }
-
-
-    public static int convertDip2Pixels(Context context, int dip) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
-    }
-
-
-    private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
-
-
-        public ScreenSlidePagerAdapter(FragmentManager fm) {
-            super(fm);
-        }
-
-        @Override
-        public Fragment getItem(int position) {
-            final ScreenSlidePageFragment f = new ScreenSlidePageFragment();
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("animal",animals.get(position));
-            f.setArguments(bundle);
-            return f;
-        }
-
-        @Override
-        public int getCount() {
-            return animals.size();
-        }
     }
 }

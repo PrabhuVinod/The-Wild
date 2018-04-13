@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewTreeObserver;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -28,29 +30,41 @@ public class SplashActivity extends AppCompatActivity {
 
         final NatGeo natGeo = NatGeo.INSTANCE;
 
-        natGeo.loadAllAnimals(mActivity, new NatGeoCallback() {
+        final ImageView splash_logo=findViewById(R.id.splash_logo);
+        ViewTreeObserver vto = splash_logo.getViewTreeObserver();
+        vto.addOnGlobalLayoutListener (new ViewTreeObserver.OnGlobalLayoutListener() {
             @Override
-            public void onSuccess(String resopnseJson) {
-                natGeo.responseToJSON(resopnseJson, "animals");
+            public void onGlobalLayout() {
+                splash_logo.getViewTreeObserver().removeOnGlobalLayoutListener(this);
 
-                progressBar.setVisibility(View.GONE);
+                natGeo.loadAllAnimals(mActivity, new NatGeoCallback() {
+                    @Override
+                    public void onSuccess(String resopnseJson) {
+                        natGeo.responseToJSON(resopnseJson, "animals");
 
-                Intent intent = new Intent(mActivity, MainActivity.class);
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                if(mActivity != null) {
-                    //startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity).toBundle());  // animation causing crash
-                    startActivity(intent);
-                    finish();
-                }
+                        progressBar.setVisibility(View.GONE);
+
+                        Intent intent = new Intent(mActivity, MainActivity.class);
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        if(mActivity != null) {
+                            //startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(mActivity).toBundle());  // animation causing crash
+                            startActivity(intent);
+                            finish();
+                        }
+
+                    }
+
+                    @Override
+                    public void onError(String error) {
+                        Toast.makeText(mActivity, "ERROR:"+error, Toast.LENGTH_SHORT).show();
+                    }
+
+                });
 
             }
-
-            @Override
-            public void onError(String error) {
-                Toast.makeText(mActivity, "ERROR:"+error, Toast.LENGTH_SHORT).show();
-            }
-
         });
+
+
 
     }
 

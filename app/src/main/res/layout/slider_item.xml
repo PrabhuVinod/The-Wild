@@ -4,10 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/slide_pic_conlayout"
     android:layout_width="match_parent"
-    android:fitsSystemWindows="true"
-    android:elevation="@dimen/shadow_elevation"
+    android:layout_height="match_parent"
     android:background="?android:attr/selectableItemBackground"
-    android:layout_height="match_parent" >
+    android:elevation="@dimen/shadow_elevation"
+    android:fitsSystemWindows="true">
 
 
     <ImageView
@@ -27,11 +27,11 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/semi_black"
+        android:paddingEnd="16dp"
+        android:paddingStart="16dp"
         android:textAlignment="center"
         android:textSize="32sp"
         android:textStyle="bold"
-        android:paddingStart="16dp"
-        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="@+id/animal_iv"
         app:layout_constraintStart_toStartOf="@+id/animal_iv"
         app:layout_constraintTop_toTopOf="@+id/animal_iv"
@@ -51,7 +51,7 @@
 
     <TextView
         android:id="@+id/animal_diet_tv"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
@@ -60,7 +60,16 @@
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/animal_iv"
         app:layout_constraintEnd_toEndOf="@+id/animal_iv"
+        app:layout_constraintStart_toEndOf="@+id/barrier6"
         tools:text="Diet: Omnivores" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="animal_type_tv"
+        tools:layout_editor_absoluteX="192dp" />
 
 
 </android.support.constraint.ConstraintLayout>
