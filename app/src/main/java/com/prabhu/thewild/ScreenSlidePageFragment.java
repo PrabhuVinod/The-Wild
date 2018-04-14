@@ -1,6 +1,7 @@
 package com.prabhu.thewild;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,24 @@ public class ScreenSlidePageFragment extends Fragment {
             animal_title_tv.setText(animal.getTitle());
             animal_type_tv.setText("Type: "+animal.getType());
             animal_diet_tv.setText("Diet: "+animal.getDiet());
+
+
+
+            rootView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =new Intent(getActivity(), DetailsActivity.class);
+                    intent.putExtra("animal",animal.getTitle());
+                    startActivity(intent);
+                }
+            });
+
+
+
+
+
+
+
         }
 
         return rootView;

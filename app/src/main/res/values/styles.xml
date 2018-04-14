@@ -22,6 +22,10 @@
 
     </style>
 
+    <style name="deatilsTheme" parent="AppTheme">
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
     <style name="SplashStyle" parent="Theme.AppCompat.NoActionBar">
         <item name="android:windowBackground">@drawable/green_blur</item>
         <item name="android:fontFamily">@font/buffaloscript</item>

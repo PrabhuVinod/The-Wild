@@ -30,6 +30,7 @@ import com.prabhu.thewild.utils.NatGeo;
 import com.prabhu.thewild.utils.NatGeoAnimal;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import static com.prabhu.thewild.MainActivity.hideSoftKeyboard;
 
@@ -54,17 +55,18 @@ public class ResultsActivity extends AppCompatActivity {
         toolbar.setTitle("");
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
-
-        setSupportActionBar(toolbar);
-        if (getSupportActionBar() != null)
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 onBackPressed();
             }
         });
+
+        setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+
 
         final TextView toolbar_title_tv = (TextView)findViewById(R.id.toolbar_title);
         ImageButton search_btn = (ImageButton) findViewById(R.id.search_btn);
@@ -75,7 +77,7 @@ public class ResultsActivity extends AppCompatActivity {
         search_auto_tv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String selected_animal = (String) adapterView.getItemAtPosition(position);
+                final String selected_animal = (String) adapterView.getItemAtPosition(position);
                 Toast.makeText(mActivity, selected_animal, Toast.LENGTH_SHORT).show();
 
                 search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
@@ -84,6 +86,10 @@ public class ResultsActivity extends AppCompatActivity {
                         super.onAnimationEnd(animation);
                         hideSoftKeyboard(search_auto_tv);
                         search_auto_tv.setVisibility(View.INVISIBLE);
+
+                        Intent intent =new Intent(mActivity, DetailsActivity.class);
+                        intent.putExtra("animal",selected_animal);
+                        startActivity(intent);
                     }
                 });
                 toolbar_title_tv.animate().alpha(1.0f).setDuration(500);
@@ -140,6 +146,8 @@ public class ResultsActivity extends AppCompatActivity {
         }
 
         animals = natGeo.filterAnimalsByType(animalType);
+
+        Collections.shuffle(animals);
 
 
         search_msg_tv.setText(animalType);

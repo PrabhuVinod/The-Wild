@@ -41,8 +41,8 @@
         android:id="@+id/animal_type_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginStart="16dp"
+        android:paddingBottom="16dp"
+        android:paddingStart="16dp"
         android:background="@color/semi_black"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@+id/animal_iv"
@@ -53,8 +53,8 @@
         android:id="@+id/animal_diet_tv"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
+        android:paddingBottom="16dp"
+        android:paddingEnd="16dp"
         android:background="@color/semi_black"
         android:gravity="end"
         android:textStyle="italic"
@@ -68,8 +68,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:barrierDirection="right"
-        app:constraint_referenced_ids="animal_type_tv"
-        tools:layout_editor_absoluteX="192dp" />
+        app:constraint_referenced_ids="animal_type_tv" />
 
 
 </android.support.constraint.ConstraintLayout>

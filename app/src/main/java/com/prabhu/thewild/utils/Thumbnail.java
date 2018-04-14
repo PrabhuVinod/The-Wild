@@ -1,5 +1,7 @@
 package com.prabhu.thewild.utils;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 public class Thumbnail implements Serializable
@@ -11,6 +13,7 @@ public class Thumbnail implements Serializable
     private Integer width;
     private String mimeType;
     private Boolean internal;
+    @SerializedName("alt-text")
     private String altText;
     private String guid;
     private final static long serialVersionUID = -1420670207777116643L;

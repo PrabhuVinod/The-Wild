@@ -17,6 +17,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public enum NatGeo {
@@ -53,6 +54,7 @@ public enum NatGeo {
     }
 
     public ArrayList<String> getAllAnimalNames() {
+        Collections.shuffle(allAnimalNames);
         return  allAnimalNames;
     }
 
@@ -75,7 +77,6 @@ public enum NatGeo {
                     Log.d("animals size",String.valueOf(animals.length));
                     int i = 0;
                     for(NatGeoAnimal animal: animals){
-                        //Log.e("ANIMAL",animal.getTitle());
                         allAnimalNames.add(animal.getTitle());
                         i++;
                     }

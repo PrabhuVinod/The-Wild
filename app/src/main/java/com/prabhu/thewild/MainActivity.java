@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         search_auto_tv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                String selected_animal = (String) adapterView.getItemAtPosition(position);
+                final String selected_animal = (String) adapterView.getItemAtPosition(position);
                 Toast.makeText(mActivity, selected_animal, Toast.LENGTH_SHORT).show();
 
                 search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
@@ -79,6 +79,10 @@ public class MainActivity extends AppCompatActivity {
                         super.onAnimationEnd(animation);
                         hideSoftKeyboard(search_auto_tv);
                         search_auto_tv.setVisibility(View.INVISIBLE);
+
+                        Intent intent =new Intent(mActivity, DetailsActivity.class);
+                        intent.putExtra("animal",selected_animal);
+                        startActivity(intent);
                     }
                 });
                 toolbar_title_tv.animate().alpha(1.0f).setDuration(500);

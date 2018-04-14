@@ -5,16 +5,26 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Sizes implements Serializable, Parcelable
 {
 
+    @SerializedName("240")
     private String _240;
+    @SerializedName("320")
     private String _320;
+    @SerializedName("500")
     private String _500;
+    @SerializedName("640")
     private String _640;
+    @SerializedName("800")
     private String _800;
+    @SerializedName("1024")
     private String _1024;
+    @SerializedName("1600")
     private String _1600;
+    @SerializedName("2048")
     private String _2048;
     public final static Parcelable.Creator<Sizes> CREATOR = new Creator<Sizes>() {
 

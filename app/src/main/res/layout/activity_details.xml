@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+    android:theme="@style/deatilsTheme"
     tools:context=".DetailsActivity">
+
+<android.support.constraint.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -32,7 +37,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
-    <LinearLayout
+    <android.support.design.widget.TabLayout
         android:id="@+id/slider_dots"
         android:layout_width="match_parent"
         android:layout_height="30dp"
@@ -40,8 +45,259 @@
         android:gravity="center"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="@+id/vp_slider"
+        android:padding="4dp"
+        android:background="@color/semi_black"
+        app:tabBackground="@drawable/tab_selector"
+        app:tabGravity="center"
+        app:tabIndicatorHeight="0dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"></LinearLayout>
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/common_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:text="Common Name"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vp_slider"
+        tools:text="Common Name" />
+
+    <TextView
+        android:id="@+id/scientific_name_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Scientific name"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/scientific_name_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Scientific name" />
+
+    <TextView
+        android:id="@+id/type_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Type"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/type_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Type" />
+
+    <TextView
+        android:id="@+id/diet_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Diet"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/diet_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Diet" />
+
+    <TextView
+        android:id="@+id/average_lifespan_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Average lifespan"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/average_lifespan_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Average lifespan" />
+
+    <TextView
+        android:id="@+id/size_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Size"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/size_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Size" />
+
+    <TextView
+        android:id="@+id/weight_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Weight"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintBaseline_toBaselineOf="@+id/weight_value_tv"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Weight" />
+
+    <TextView
+        android:id="@+id/red_list_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="IUCN Red list Status"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/weight_tv"
+        tools:text="IUCN Red list Status" />
+
+    <TextView
+        android:id="@+id/about_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:text="About"
+        android:textColor="@android:color/black"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/red_list_tv"
+        tools:text="About" />
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barrier3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="about_tv,weight_tv,size_tv,type_tv,diet_tv,average_lifespan_tv,common_name_tv,red_list_tv,about_tv,scientific_name_tv"
+        tools:layout_editor_absoluteX="127dp" />
+
+    <TextView
+        android:id="@+id/common_name_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="18dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/slider_dots"
+        tools:text="common name value tv" />
+
+    <TextView
+        android:id="@+id/scientific_name_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/common_name_value_tv"
+        tools:text="scientific_name_value_tv" />
+
+    <TextView
+        android:id="@+id/type_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/scientific_name_value_tv"
+        tools:text="type_value_tv" />
+
+    <TextView
+        android:id="@+id/diet_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/type_value_tv"
+        tools:text="diet_value_tv" />
+
+    <TextView
+        android:id="@+id/average_lifespan_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/diet_value_tv"
+        tools:text="average_lifespan_value_tv" />
+
+    <TextView
+        android:id="@+id/size_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/average_lifespan_value_tv"
+        tools:text="size_value_tv" />
+
+    <TextView
+        android:id="@+id/weight_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/size_value_tv"
+        tools:text="weight_value_tv" />
+
+    <TextView
+        android:id="@+id/red_list_value_tv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="@font/interui_regular"
+        android:textColor="@android:color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barrier3"
+        app:layout_constraintTop_toBottomOf="@+id/weight_value_tv"
+        tools:text="red_list_value_tv" />
+
+    <WebView
+        android:id="@+id/about_value_wv"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/semi_black"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/about_tv" />
 
 
 </android.support.constraint.ConstraintLayout>
+</ScrollView>

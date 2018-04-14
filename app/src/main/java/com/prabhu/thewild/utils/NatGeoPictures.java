@@ -5,12 +5,15 @@ import android.os.Parcel;
 import android.os.Parcelable;
 import android.os.Parcelable.Creator;
 
+import com.google.gson.annotations.SerializedName;
+
 public class NatGeoPictures implements Serializable, Parcelable
 {
 
     private String caption;
     private String credit;
     private String profileUrl;
+    @SerializedName("full-path-url")
     private String fullPathUrl;
     private String url;
     private String originalUrl;
