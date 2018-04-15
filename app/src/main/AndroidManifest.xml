@@ -12,6 +12,7 @@
         android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
+        android:screenOrientation="portrait"
         android:theme="@style/AppTheme">
         <activity
             android:name=".SplashActivity"
@@ -26,13 +27,14 @@
         <activity
             android:name=".ResultsActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
-            android:screenOrientation="portrait"
-            android:parentActivityName=".MainActivity"/>
-        <activity android:name=".DetailsActivity"
-            android:parentActivityName=".MainActivity"
+            android:parentActivityName=".MainActivity" />
+        <activity
+            android:name=".DetailsActivity"
             android:configChanges="keyboardHidden|screenSize|orientation"
-            android:screenOrientation="portrait"
-            android:theme="@style/deatilsTheme"/>
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/deatilsTheme" />
+        <activity android:name=".ErrorActivity"
+            android:theme="@style/errorTheme"/>
     </application>
 
 </manifest>

@@ -5,7 +5,8 @@
     android:id="@+id/slide_pic_conlayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/selectableItemBackground"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:background="@color/semi_black"
     android:elevation="@dimen/shadow_elevation"
     android:fitsSystemWindows="true">
 

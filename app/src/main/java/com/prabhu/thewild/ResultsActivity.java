@@ -5,17 +5,14 @@ import android.animation.AnimatorListenerAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
-import android.os.Parcelable;
-import android.support.annotation.NonNull;
+import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.WindowManager;
@@ -24,7 +21,6 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.prabhu.thewild.utils.NatGeo;
 import com.prabhu.thewild.utils.NatGeoAnimal;
@@ -40,8 +36,13 @@ public class ResultsActivity extends AppCompatActivity {
     Toolbar toolbar;
     ViewPager mPager;
     PagerAdapter mPagerAdapter;
-    private ArrayList<NatGeoAnimal> animals;
     TextView match_count_tv, search_msg_tv;
+    private ArrayList<NatGeoAnimal> animals;
+
+    public static int convertDip2Pixels(Context context, int dip) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -51,7 +52,7 @@ public class ResultsActivity extends AppCompatActivity {
         NatGeo natGeo = NatGeo.INSTANCE;
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
-        toolbar = (Toolbar)findViewById(R.id.toolbar);
+        toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle("");
 
         toolbar.setNavigationIcon(getResources().getDrawable(R.drawable.ic_arrow_back));
@@ -67,18 +68,17 @@ public class ResultsActivity extends AppCompatActivity {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
-
-        final TextView toolbar_title_tv = (TextView)findViewById(R.id.toolbar_title);
+        final TextView toolbar_title_tv = (TextView) findViewById(R.id.toolbar_title);
         ImageButton search_btn = (ImageButton) findViewById(R.id.search_btn);
         String[] allAnimalNames = natGeo.getAllAnimalNames().toArray(new String[0]);
-        View v= findViewById(R.id.search_bar_include);
+        View v = findViewById(R.id.search_bar_include);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mActivity, R.layout.simple_dropdown_item, allAnimalNames);
         final AutoCompleteTextView search_auto_tv = (AutoCompleteTextView) v.findViewById(R.id.autoCompleteTextView);
         search_auto_tv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
                 final String selected_animal = (String) adapterView.getItemAtPosition(position);
-                Toast.makeText(mActivity, selected_animal, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(mActivity, selected_animal, Toast.LENGTH_SHORT).show();
 
                 search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
                     @Override
@@ -87,8 +87,8 @@ public class ResultsActivity extends AppCompatActivity {
                         hideSoftKeyboard(search_auto_tv);
                         search_auto_tv.setVisibility(View.INVISIBLE);
 
-                        Intent intent =new Intent(mActivity, DetailsActivity.class);
-                        intent.putExtra("animal",selected_animal);
+                        Intent intent = new Intent(mActivity, DetailsActivity.class);
+                        intent.putExtra("animal", selected_animal);
                         startActivity(intent);
                     }
                 });
@@ -105,7 +105,7 @@ public class ResultsActivity extends AppCompatActivity {
             @Override
             public void onClick(final View view) {
 
-                if(search_auto_tv.getVisibility() == View.VISIBLE){
+                if (search_auto_tv.getVisibility() == View.VISIBLE) {
                     search_auto_tv.animate().alpha(0.0f).setListener(new AnimatorListenerAdapter() {
                         @Override
                         public void onAnimationEnd(Animator animation) {
@@ -115,8 +115,7 @@ public class ResultsActivity extends AppCompatActivity {
                         }
                     });
                     toolbar_title_tv.animate().alpha(1.0f).setDuration(500);
-                }
-                else {
+                } else {
                     toolbar_title_tv.animate().alpha(0.0f).setDuration(500);
                     search_auto_tv.animate().alpha(1.0f).setDuration(500).setListener(new AnimatorListenerAdapter() {
                         @Override
@@ -136,13 +135,13 @@ public class ResultsActivity extends AppCompatActivity {
         String animalType;
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
-            if(extras == null) {
-                animalType= null;
+            if (extras == null) {
+                animalType = null;
             } else {
-                animalType= extras.getString("animalType");
+                animalType = extras.getString("animalType");
             }
         } else {
-            animalType= (String) savedInstanceState.getSerializable("animalType");
+            animalType = (String) savedInstanceState.getSerializable("animalType");
         }
 
         animals = natGeo.filterAnimalsByType(animalType);
@@ -151,11 +150,11 @@ public class ResultsActivity extends AppCompatActivity {
 
 
         search_msg_tv.setText(animalType);
-        match_count_tv.setText("1/"+animals.size());
+        match_count_tv.setText("1/" + animals.size());
 
 
         mPager = (ViewPager) findViewById(R.id.viewpager);
-        mPager.setPageMargin(convertDip2Pixels(mActivity,16));
+        mPager.setPageMargin(convertDip2Pixels(mActivity, 16));
         mPager.setPageTransformer(false, new ViewPager.PageTransformer() {
             @Override
             public void transformPage(View page, float position) {
@@ -169,27 +168,21 @@ public class ResultsActivity extends AppCompatActivity {
         mPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-                Log.e("onPageScrolled",":"+position);
+//                Log.e("onPageScrolled",":"+position);
             }
 
             @Override
             public void onPageSelected(int position) {
-                match_count_tv.setText((position+1)+"/"+animals.size());
+                match_count_tv.setText((position + 1) + "/" + animals.size());
             }
 
             @Override
             public void onPageScrollStateChanged(int state) {
-                Log.e("PageScrollStateChanged",":"+state);
+//                Log.e("PageScrollStateChanged",":"+state);
             }
         });
         mPager.setAdapter(mPagerAdapter);
     }
-
-
-    public static int convertDip2Pixels(Context context, int dip) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dip, context.getResources().getDisplayMetrics());
-    }
-
 
     private class ScreenSlidePagerAdapter extends FragmentStatePagerAdapter {
 
@@ -202,7 +195,7 @@ public class ResultsActivity extends AppCompatActivity {
         public Fragment getItem(int position) {
             final ScreenSlidePageFragment f = new ScreenSlidePageFragment();
             Bundle bundle = new Bundle();
-            bundle.putParcelable("animal",animals.get(position));
+            bundle.putParcelable("animal", animals.get(position));
             f.setArguments(bundle);
             return f;
         }

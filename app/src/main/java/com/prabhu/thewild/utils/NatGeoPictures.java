@@ -1,25 +1,14 @@
 package com.prabhu.thewild.utils;
 
-import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 
 import com.google.gson.annotations.SerializedName;
 
-public class NatGeoPictures implements Serializable, Parcelable
-{
+import java.io.Serializable;
 
-    private String caption;
-    private String credit;
-    private String profileUrl;
-    @SerializedName("full-path-url")
-    private String fullPathUrl;
-    private String url;
-    private String originalUrl;
-    private Double aspectRatio;
-    private Sizes sizes;
-    private Boolean internal;
+public class NatGeoPictures implements Serializable, Parcelable {
+
     public final static Parcelable.Creator<NatGeoPictures> CREATOR = new Creator<NatGeoPictures>() {
 
 
@@ -34,9 +23,18 @@ public class NatGeoPictures implements Serializable, Parcelable
             return (new NatGeoPictures[size]);
         }
 
-    }
-            ;
+    };
     private final static long serialVersionUID = 158156662329839548L;
+    private String caption;
+    private String credit;
+    private String profileUrl;
+    @SerializedName("full-path-url")
+    private String fullPathUrl;
+    private String url;
+    private String originalUrl;
+    private Double aspectRatio;
+    private Sizes sizes;
+    private Boolean internal;
 
     protected NatGeoPictures(Parcel in) {
         this.caption = ((String) in.readValue((String.class.getClassLoader())));
@@ -52,13 +50,11 @@ public class NatGeoPictures implements Serializable, Parcelable
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public NatGeoPictures() {
     }
 
     /**
-     *
      * @param sizes
      * @param originalUrl
      * @param profileUrl

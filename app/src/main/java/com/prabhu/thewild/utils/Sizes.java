@@ -1,15 +1,30 @@
 package com.prabhu.thewild.utils;
 
-import java.io.Serializable;
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.os.Parcelable.Creator;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Sizes implements Serializable, Parcelable
-{
+import java.io.Serializable;
 
+public class Sizes implements Serializable, Parcelable {
+
+    public final static Parcelable.Creator<Sizes> CREATOR = new Creator<Sizes>() {
+
+
+        @SuppressWarnings({
+                "unchecked"
+        })
+        public Sizes createFromParcel(Parcel in) {
+            return new Sizes(in);
+        }
+
+        public Sizes[] newArray(int size) {
+            return (new Sizes[size]);
+        }
+
+    };
+    private final static long serialVersionUID = -7823396505202494427L;
     @SerializedName("240")
     private String _240;
     @SerializedName("320")
@@ -26,23 +41,6 @@ public class Sizes implements Serializable, Parcelable
     private String _1600;
     @SerializedName("2048")
     private String _2048;
-    public final static Parcelable.Creator<Sizes> CREATOR = new Creator<Sizes>() {
-
-
-        @SuppressWarnings({
-                "unchecked"
-        })
-        public Sizes createFromParcel(Parcel in) {
-            return new Sizes(in);
-        }
-
-        public Sizes[] newArray(int size) {
-            return (new Sizes[size]);
-        }
-
-    }
-            ;
-    private final static long serialVersionUID = -7823396505202494427L;
 
     protected Sizes(Parcel in) {
         this._240 = ((String) in.readValue((String.class.getClassLoader())));
@@ -57,13 +55,11 @@ public class Sizes implements Serializable, Parcelable
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public Sizes() {
     }
 
     /**
-     *
      * @param _1600
      * @param _2048
      * @param _320

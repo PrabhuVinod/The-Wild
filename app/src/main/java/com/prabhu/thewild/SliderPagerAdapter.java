@@ -15,10 +15,10 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.ArrayList;
 
 public class SliderPagerAdapter extends PagerAdapter {
-    private LayoutInflater layoutInflater;
     Activity activity;
     ArrayList<String> image_arraylist;
     ArrayList<String> credits_arraylist;
+    private LayoutInflater layoutInflater;
 
     public SliderPagerAdapter(Activity activity, ArrayList<String> image_arraylist, ArrayList<String> credits_arraylist) {
         this.activity = activity;
@@ -34,18 +34,16 @@ public class SliderPagerAdapter extends PagerAdapter {
         ImageView im_slider = (ImageView) view.findViewById(R.id.details_slider_image);
         TextView credits_tv = (TextView) view.findViewById(R.id.credits_tv);
 
-        if(position<image_arraylist.size()){
-            if(image_arraylist.get(position).equals("Unknown"))
+        if (position < image_arraylist.size()) {
+            if (image_arraylist.get(position).equals("Unknown"))
                 Glide.with(activity).load(R.drawable.image_placeholder).apply(new RequestOptions().centerCrop()).into(im_slider);
             else
                 Glide.with(activity).load(image_arraylist.get(position)).apply(new RequestOptions().centerCrop()).into(im_slider);
-        }
-        else
+        } else
             Glide.with(activity).load(R.drawable.image_placeholder).apply(new RequestOptions().centerCrop()).into(im_slider);
 
-        if (position<credits_arraylist.size())
+        if (position < credits_arraylist.size())
             credits_tv.setText(credits_arraylist.get(position));
-
 
 
         container.addView(view);

@@ -4,9 +4,9 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class Thumbnail implements Serializable
-{
+public class Thumbnail implements Serializable {
 
+    private final static long serialVersionUID = -1420670207777116643L;
     private String url;
     private Double aspectRatio;
     private Integer height;
@@ -16,17 +16,14 @@ public class Thumbnail implements Serializable
     @SerializedName("alt-text")
     private String altText;
     private String guid;
-    private final static long serialVersionUID = -1420670207777116643L;
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public Thumbnail() {
     }
 
     /**
-     *
      * @param guid
      * @param height
      * @param width

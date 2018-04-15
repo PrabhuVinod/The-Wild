@@ -7,29 +7,20 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 
-public class NatGeoAnimal implements Serializable ,Parcelable
-{
-    @Override
-    public String toString() {
-        return "NatGeoAnimal{" +
-                "title='" + title + '\'' +
-                ", scientificName='" + scientificName + '\'' +
-                ", url='" + url + '\'' +
-                ", type='" + type + '\'' +
-                ", diet='" + diet + '\'' +
-                ", groupName='" + groupName + '\'' +
-                ", averageLifeSpanInCaptivity='" + averageLifeSpanInCaptivity + '\'' +
-                ", size='" + size + '\'' +
-                ", weight='" + weight + '\'' +
-                ", populationTrend='" + populationTrend + '\'' +
-                ", status='" + status + '\'' +
-                ", statusCode='" + statusCode + '\'' +
-                ", thumbnail=" + thumbnail +
-                '}';
-    }
+public class NatGeoAnimal implements Serializable, Parcelable {
+    public static final Creator<NatGeoAnimal> CREATOR = new Creator<NatGeoAnimal>() {
+        @Override
+        public NatGeoAnimal createFromParcel(Parcel in) {
+            return new NatGeoAnimal(in);
+        }
 
+        @Override
+        public NatGeoAnimal[] newArray(int size) {
+            return new NatGeoAnimal[size];
+        }
+    };
+    private final static long serialVersionUID = 8509365552234056429L;
     private String title;
-
     @SerializedName("scientific-name")
     private String scientificName;
     private String url;
@@ -37,7 +28,7 @@ public class NatGeoAnimal implements Serializable ,Parcelable
     private String diet;
     @SerializedName("group-name")
     private String groupName;
-    @SerializedName(value="average-life-span-in-the-wild", alternate={"average-life-span-in-captivity"})
+    @SerializedName(value = "average-life-span-in-the-wild", alternate = {"average-life-span-in-captivity"})
     private String averageLifeSpanInCaptivity;
     private String size;
     private String weight;
@@ -47,17 +38,14 @@ public class NatGeoAnimal implements Serializable ,Parcelable
     @SerializedName("status-code")
     private String statusCode;
     private Thumbnail thumbnail;
-    private final static long serialVersionUID = 8509365552234056429L;
 
     /**
      * No args constructor for use in serialization
-     *
      */
     public NatGeoAnimal() {
     }
 
     /**
-     *
      * @param averageLifeSpanInCaptivity
      * @param groupName
      * @param scientificName
@@ -104,17 +92,24 @@ public class NatGeoAnimal implements Serializable ,Parcelable
         statusCode = in.readString();
     }
 
-    public static final Creator<NatGeoAnimal> CREATOR = new Creator<NatGeoAnimal>() {
-        @Override
-        public NatGeoAnimal createFromParcel(Parcel in) {
-            return new NatGeoAnimal(in);
-        }
-
-        @Override
-        public NatGeoAnimal[] newArray(int size) {
-            return new NatGeoAnimal[size];
-        }
-    };
+    @Override
+    public String toString() {
+        return "NatGeoAnimal{" +
+                "title='" + title + '\'' +
+                ", scientificName='" + scientificName + '\'' +
+                ", url='" + url + '\'' +
+                ", type='" + type + '\'' +
+                ", diet='" + diet + '\'' +
+                ", groupName='" + groupName + '\'' +
+                ", averageLifeSpanInCaptivity='" + averageLifeSpanInCaptivity + '\'' +
+                ", size='" + size + '\'' +
+                ", weight='" + weight + '\'' +
+                ", populationTrend='" + populationTrend + '\'' +
+                ", status='" + status + '\'' +
+                ", statusCode='" + statusCode + '\'' +
+                ", thumbnail=" + thumbnail +
+                '}';
+    }
 
     public String getTitle() {
         if (title == null)
