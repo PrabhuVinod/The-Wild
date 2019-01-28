@@ -1,5 +1,7 @@
 # The-Wild
-The Wild android app.
+The Wild android app. AN android app which works by crawling and parsing NatGeo website to heap all the flaora and fauna data by crawling https://www.nationalgeographic.com/
+It do NOT store the data anywhere. All data is generated on client device only.
+
 
 #Screens:
 
